@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: demo-app
+spec:
+  replicas: 5
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: { duration: 30s }
+        - setWeight: 50
+        - pause: { duration: 30s }
+        - setWeight: 100
+      analysis:
+        templates:
+          - templateName: success-rate
+            startingStep: 1
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: demo-app
+          image: ghcr.io/rubencosta13/demo-app:stable
+          ports:
+            - containerPort: 8080
