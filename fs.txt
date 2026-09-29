@@ -1,0 +1,55 @@
+./
+├── app/
+│   ├── README.md
+│   ├── scripts/
+│   │   ├── all.sh*
+│   │   ├── error-traffic.sh*
+│   │   ├── load-test.sh*
+│   │   ├── normal-payload.sh*
+│   │   └── user-simulation.sh*
+│   └── src/
+│       └── tests/
+│           └── controller.test.ts
+├── fs.txt
+├── observability/
+│   ├── argo-cd/
+│   │   └── values.yaml
+│   ├── grafana/
+│   │   ├── Chart.lock
+│   │   ├── Chart.yaml
+│   │   ├── charts/
+│   │   │   └── grafana-10.5.15.tgz
+│   │   ├── provisioning/
+│   │   │   ├── dashboards/
+│   │   │   └── datasources/
+│   │   ├── templates/
+│   │   │   ├── dashboards-configmap.yaml
+│   │   │   └── datasources-configmap.yaml
+│   │   └── values.yaml.tftpl
+│   ├── jaeger/
+│   │   └── values.yaml
+│   ├── kind.yaml.tftpl
+│   ├── namespace.yaml
+│   ├── otel-collector/
+│   │   └── values.yaml
+│   ├── prometheus/
+│   │   └── values.yaml
+│   ├── terraform/
+│   │   ├── grafana-values.yaml
+│   │   ├── kind.yaml
+│   │   ├── main.tf
+│   │   ├── terraform.tfstate
+│   │   ├── terraform.tfstate.backup
+│   │   ├── terraform.tfvars
+│   │   └── variables.tf
+│   └── traefik/
+│       ├── gateway.yaml
+│       ├── routes/
+│       │   ├── argocd-route.yaml
+│       │   ├── grafana-route.yaml
+│       │   ├── jaeger-route.yaml
+│       │   └── otel-route.yaml
+│       └── values.yaml
+└── readme.md
+
+19 directories, 34 files
