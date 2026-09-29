@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-observability-provisioning
+data:
+  dashboard.yaml: |
+{{ .Files.Get "provisioning/dashboards/dashboard.yaml" | indent 4 }}
+
+  datasources.yaml: |
+{{ .Files.Get "provisioning/datasources/datasources.yaml" | indent 4 }}

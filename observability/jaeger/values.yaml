@@ -1,0 +1,33 @@
+provisionDataStore:
+  cassandra: false
+
+allInOne:
+  enabled: true
+
+storage:
+  type: memory
+
+collector:
+  enabled: true
+
+query:
+  enabled: true
+
+agent:
+  enabled: false
+
+service:
+  collector:
+    otlp:
+      grpc:
+        name: otlp-grpc
+        port: 4317
+      http:
+        name: otlp-http
+        port: 4318
+    zipkin:
+      enabled: false
+
+  query:
+    type: ClusterIP
+    port: 16686

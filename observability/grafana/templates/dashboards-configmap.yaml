@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-observability-dashboards
+data:
+  canary.json: |
+{{ .Files.Get "provisioning/dashboards/json/canary.json" | indent 4 }}
+
+#   otel-overview.json: |
+# {{ .Files.Get "provisioning/dashboards/json/otel-overview.json" | indent 4 }}

@@ -1,0 +1,17 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    uid: prometheus
+    access: proxy
+    url: http://prometheus-kube-prometheus-prometheus.observability.svc.cluster.local:9090
+    isDefault: true
+    editable: true
+
+  - name: Jaeger
+    type: jaeger
+    uid: jaeger
+    access: proxy
+    url: http://jaeger-query.observability.svc.cluster.local:16686
+    editable: true
