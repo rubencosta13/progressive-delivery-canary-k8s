@@ -130,7 +130,7 @@ It is a Fastify application with endpoints specifically designed to generate:
 
 The `DEPLOYMENT_TRACK` environment variable identifies whether a request was handled by the stable or canary deployment.
 
-## Progressive Delivery
+## Progressive Delivery - TO BE DONE
 
 The application can run as separate stable and canary deployments.
 
