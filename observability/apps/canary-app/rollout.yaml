@@ -1,0 +1,74 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: canary-app
+  namespace: observability
+  labels:
+    app: canary-app
+
+spec:
+  replicas: 2
+
+  revisionHistoryLimit: 2
+
+  selector:
+    matchLabels:
+      app: canary-app
+
+  strategy:
+    canary:
+      stableService: canary-app
+      canaryService: canary-app-canary
+
+      trafficRouting:
+        plugins:
+          argoproj-labs/gatewayAPI:
+            httpRoute: canary-app
+            namespace: observability
+
+      steps:
+        - setWeight: 10
+        - pause:
+            duration: 30s
+
+        - setWeight: 50
+        - pause:
+            duration: 30s
+
+        - setWeight: 100
+
+  template:
+    metadata:
+      labels:
+        app: canary-app
+
+    spec:
+      containers:
+        - name: canary-app
+
+          image: ghcr.io/rubencosta13/progressive-delivery-canary-app:v1.0.3-canary
+          imagePullPolicy: Always
+
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+
+          env:
+            - name: HOST
+              value: "0.0.0.0"
+
+            - name: OTLP_TRACE_EXPORTER_URL
+              value: "https://otel.benuino.eu.org/v1/traces"
+
+            - name: OTLP_METRIC_EXPORTER_URL
+              value: "https://otel.benuino.eu.org/v1/metrics"
+
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+
+            limits:
+              cpu: 250m
+              memory: 256Mi

@@ -1,0 +1,28 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: canary-app
+  namespace: observability
+
+spec:
+  parentRefs:
+    - name: observability
+      namespace: observability
+
+  hostnames:
+    - canary.benuino.eu.org
+
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+
+      backendRefs:
+        - name: canary-app
+          port: 3000
+          weight: 100
+
+        - name: canary-app-canary
+          port: 3000
+          weight: 0
