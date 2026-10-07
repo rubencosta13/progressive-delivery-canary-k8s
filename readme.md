@@ -1,4 +1,4 @@
-# Progressive Delivery Canary Kubernetes
+# [WIP] Progressive Delivery Canary Kubernetes
 
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Terraform](https://img.shields.io/badge/Terraform-844FBA?style=for-the-badge&logo=terraform&logoColor=white)
